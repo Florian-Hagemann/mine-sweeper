@@ -14,6 +14,7 @@ class Map {
         vector<vector<Tile>> map;
 
         void generate(int arg_width, int arg_height, int arg_bombCount);
+        void display();
     
     private:
         vector<pair<int,int>> bombCoordinates;

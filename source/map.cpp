@@ -20,6 +20,26 @@ void Map::generate(int arg_width, int arg_height, int arg_bombCount) {
 
 }
 
+void Map::display() {
+
+    for(int i = 0; i < height; i++) {    
+
+        for(int j = 0; j < width; j++) {
+
+            if(map[j][i].isBomb) {
+                cout << " B ";
+            } else {
+                cout << " " << map[j][i].mines << "";
+            }
+
+        }
+        
+        cout << endl << endl;
+
+    }
+
+}
+
 // Calculate the number of the tile (you know... how to make the game playable)
 void Map::calcBombCount() {
 
