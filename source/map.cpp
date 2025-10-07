@@ -15,7 +15,35 @@ void Map::generate(int arg_width, int arg_height, int arg_bombCount) {
 
     // Here starts the generation
     emptyMap();
+    mineMap();
+    calcBombCount();
 
+}
+
+// Calculate the number of the tile (you know... how to make the game playable)
+void Map::calcBombCount() {
+
+    for(pair<int,int> bomb : bombCoordinates) {
+
+        for(int i = -1; i < 2; i++) {
+
+            if(bomb.second + i >= 0 && bomb.second + i < width) {
+
+                for(int j = -1; j < 2; j++) {
+
+                    if(bomb.first + j >= 0 && bomb.first + j < height) {
+
+                        map[bomb.first + j][bomb.second + i].mines++;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
 
 }
 
@@ -39,15 +67,13 @@ pair<int, int> Map::generateMineCoordinate() {
 void Map::mineMap() {
 
     srand(time(0));
-
-    int x,y;
+    pair<int, int> coordinates;
 
     for(int i = 0; i < bombCount; i++) {
 
-        x = rand() % (width + 1);
-        y = rand() % (height + 1);
-
-        if(map[x][y].isBomb == true)
+        coordinates = generateMineCoordinate();
+        bombCoordinates[i] = coordinates; // * This is for calcBombCount()
+        map[coordinates.first][coordinates.second].isBomb = true;
 
     }
 
@@ -69,7 +95,7 @@ void Map::emptyMap() {
 
         for(int j = 0; j < width; j++) {
 
-            map[i][j] = empty;
+            map[j][i] = empty;
 
         }
 
