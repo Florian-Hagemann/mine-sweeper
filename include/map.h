@@ -2,6 +2,8 @@
 
 #include<vector>
 
+#include "tile.h"
+
 using namespace std;
 
 class Map {
@@ -9,7 +11,7 @@ class Map {
         int width;
         int height;
         int bombCount;
-        vector<vector<int>> map;
+        vector<vector<Tile>> map;
 
-        Map(int arg_width, int arg_height, int arg_bombCount);
+        void generate(int arg_width, int arg_height, int arg_bombCount);
 };
