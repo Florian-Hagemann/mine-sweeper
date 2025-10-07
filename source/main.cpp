@@ -1,10 +1,14 @@
 #include<iostream>
+#include "game.h"
 
 using namespace std;
 
 int main() {
 
-    cout << "Hello World!" << endl;
+    cout << "Starting..." << endl;
+
+    Game game;
+    game.start();
 
     return 0;
 
