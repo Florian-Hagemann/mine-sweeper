@@ -14,4 +14,9 @@ class Map {
         vector<vector<Tile>> map;
 
         void generate(int arg_width, int arg_height, int arg_bombCount);
+    
+    private:
+        void emptyMap();
+        void mineMap();
+        pair<int, int> generateMineCoordinate();
 };
