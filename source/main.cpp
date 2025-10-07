@@ -3,10 +3,19 @@
 
 using namespace std;
 
+/*
+
+MINE-SWEEPER
+
+Just mine-sweeper for the console made in c++.
+
+by Florian Hagemann <florianhagemann@mail.de>
+
+*/
+
 int main() {
 
-    cout << "Starting..." << endl;
-
+    // start game
     Game game;
     game.start();
 
