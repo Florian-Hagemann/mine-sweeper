@@ -10,6 +10,9 @@ using namespace std;
 void Game::start() {
 
     menu();
+
+    cout << "Starting game!" << endl;
+
     Map map;
 
     map.generate(16, 9, 30);

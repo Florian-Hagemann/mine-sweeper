@@ -12,11 +12,15 @@ void Map::generate(int arg_width, int arg_height, int arg_bombCount) {
     height = arg_height;
     bombCount = arg_bombCount;
 
+    cout << "Starting map generation" << endl;
 
     // Here starts the generation
     emptyMap();
+    cout << "Emptied and resized map" << endl;
     mineMap();
+    cout << "Placed the mines" << endl;
     calcBombCount();
+    cout << "Calculated the tile numbers" << endl;
 
 }
 
@@ -71,13 +75,15 @@ void Map::calcBombCount() {
 pair<int, int> Map::generateMineCoordinate() {
 
     int x,y;
-    x = rand() % (width + 1);
-    y = rand() % (height + 1);
+    x = rand() % width;
+    y = rand() % height;
+    cout << "x : " << x << " |  y : " << y << endl;
 
     if(map[x][y].isBomb) {
         generateMineCoordinate();
     }
 
+    cout << "x : " << x << " |  y : " << y << endl;
     pair<int, int> coordinates = make_pair(x, y);
     return coordinates;
 
@@ -92,8 +98,12 @@ void Map::mineMap() {
     for(int i = 0; i < bombCount; i++) {
 
         coordinates = generateMineCoordinate();
-        bombCoordinates[i] = coordinates; // * This is for calcBombCount()
-        map[coordinates.first][coordinates.second].isBomb = true;
+        bombCoordinates.push_back(coordinates); // * This is for calcBombCount()
+        try {
+            map.at(coordinates.second).at(coordinates.first).isBomb = true;
+        } catch(int err) {
+            cout << err << endl;
+        }
 
     }
 
@@ -110,14 +120,19 @@ void Map::emptyMap() {
     empty.mines = 0;
     empty.revealed = false;
 
+    vector<Tile> line;
+
     // Add the template to the map
     for(int i = 0; i < height; i++) {    
 
         for(int j = 0; j < width; j++) {
 
-            map[j][i] = empty;
+            line.push_back(empty);
 
         }
+
+        map.push_back(line);
+        line.clear();
 
     }
 }
