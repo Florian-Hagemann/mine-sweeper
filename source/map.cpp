@@ -30,10 +30,10 @@ void Map::display() {
 
         for(int j = 0; j < width; j++) {
 
-            if(map[j][i].isBomb) {
-                cout << " B ";
+            if(map.at(i).at(j).isBomb) {
+                cout << " B";
             } else {
-                cout << " " << map[j][i].mines << "";
+                cout << " " << map.at(i).at(j).mines;
             }
 
         }
@@ -51,13 +51,13 @@ void Map::calcBombCount() {
 
         for(int i = -1; i < 2; i++) {
 
-            if(bomb.second + i >= 0 && bomb.second + i < width) {
+            if(bomb.first + i >= 0 && bomb.first + i < height) {
 
                 for(int j = -1; j < 2; j++) {
 
-                    if(bomb.first + j >= 0 && bomb.first + j < height) {
+                    if(bomb.second + j >= 0 && bomb.second + j < width) {
 
-                        map[bomb.first + j][bomb.second + i].mines++;
+                        map[bomb.first + i][bomb.second + j].mines++;
 
                     }
 
@@ -75,16 +75,16 @@ void Map::calcBombCount() {
 pair<int, int> Map::generateMineCoordinate() {
 
     int x,y;
-    x = rand() % width;
-    y = rand() % height;
+    x = rand() % (width - 1);
+    y = rand() % (height - 1);
     cout << "x : " << x << " |  y : " << y << endl;
 
-    if(map[x][y].isBomb) {
+    if(map.at(y).at(x).isBomb) {
         generateMineCoordinate();
     }
 
     cout << "x : " << x << " |  y : " << y << endl;
-    pair<int, int> coordinates = make_pair(x, y);
+    pair<int, int> coordinates = make_pair(y, x);
     return coordinates;
 
 }
@@ -100,7 +100,7 @@ void Map::mineMap() {
         coordinates = generateMineCoordinate();
         bombCoordinates.push_back(coordinates); // * This is for calcBombCount()
         try {
-            map.at(coordinates.second).at(coordinates.first).isBomb = true;
+            map.at(coordinates.first).at(coordinates.second).isBomb = true;
         } catch(int err) {
             cout << err << endl;
         }
@@ -135,4 +135,7 @@ void Map::emptyMap() {
         line.clear();
 
     }
+
+    cout << map.size() << endl;
+
 }

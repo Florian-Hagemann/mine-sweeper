@@ -15,7 +15,7 @@ void Game::start() {
 
     Map map;
 
-    map.generate(16, 9, 30);
+    map.generate(16, 9, 10);
     map.display();
 
 }
