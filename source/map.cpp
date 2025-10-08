@@ -77,13 +77,11 @@ pair<int, int> Map::generateMineCoordinate() {
     int x,y;
     x = rand() % (width - 1);
     y = rand() % (height - 1);
-    cout << "x : " << x << " |  y : " << y << endl;
 
     if(map.at(y).at(x).isBomb) {
         generateMineCoordinate();
     }
 
-    cout << "x : " << x << " |  y : " << y << endl;
     pair<int, int> coordinates = make_pair(y, x);
     return coordinates;
 
@@ -99,11 +97,8 @@ void Map::mineMap() {
 
         coordinates = generateMineCoordinate();
         bombCoordinates.push_back(coordinates); // * This is for calcBombCount()
-        try {
-            map.at(coordinates.first).at(coordinates.second).isBomb = true;
-        } catch(int err) {
-            cout << err << endl;
-        }
+
+        map.at(coordinates.first).at(coordinates.second).isBomb = true;
 
     }
 
@@ -135,7 +130,5 @@ void Map::emptyMap() {
         line.clear();
 
     }
-
-    cout << map.size() << endl;
 
 }
