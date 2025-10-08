@@ -2,6 +2,7 @@
 #include<string>
 
 #include "game.h"
+#include "map.h"
 
 using namespace std;
 
@@ -9,6 +10,13 @@ using namespace std;
 void Game::start() {
 
     menu();
+
+    cout << "Starting game!" << endl;
+
+    Map map;
+
+    map.generate(16, 9, 10);
+    map.display();
 
 }
 
