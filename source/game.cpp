@@ -12,9 +12,7 @@ void Game::start() {
     menu();
 
     cout << "Starting game!" << endl;
-
-    Map map;
-
+    
     map.generate(16, 9, 10);
 
     playing = true;
@@ -26,6 +24,8 @@ void Game::start() {
 void Game::update() {
 
     while(playing) {
+
+        map.display();
 
         cin >> input;
         

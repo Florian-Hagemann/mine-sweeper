@@ -10,6 +10,7 @@ class Game {
     private:
         bool playing;
         std::string input;
+        Map map;
         void help();
         void menu();
         void setupMatch();
