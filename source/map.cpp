@@ -31,14 +31,14 @@ void Map::display() {
         for(int j = 0; j < width; j++) {
 
             if(map.at(i).at(j).isBomb) {
-                cout << " B";
+                cout << "B";
             } else {
-                cout << " " << map.at(i).at(j).mines;
+                cout << map.at(i).at(j).mines;
             }
 
         }
         
-        cout << endl << endl;
+        cout << endl;
 
     }
 
