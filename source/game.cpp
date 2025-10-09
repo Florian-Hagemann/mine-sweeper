@@ -26,16 +26,21 @@ void Game::update() {
     while(playing) {
 
         map.display();
+        cout << endl;
 
         cin >> input;
         
+        cout << endl;
+
         if(input == "exit") {
             playing = false;
         } else if(input == "help") {
             help();
         } else if(input == "menu") {
-            menu();
+            start();
         }
+
+        cout << endl;
 
     }
 

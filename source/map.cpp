@@ -11,7 +11,8 @@ void Map::generate(int arg_width, int arg_height, int arg_bombCount) {
     width = arg_width;
     height = arg_height;
     bombCount = arg_bombCount;
-
+    
+    cout << endl;
     cout << "Starting map generation" << endl;
 
     // Here starts the generation
@@ -21,6 +22,7 @@ void Map::generate(int arg_width, int arg_height, int arg_bombCount) {
     cout << "Placed the mines" << endl;
     calcBombCount();
     cout << "Calculated the tile numbers" << endl;
+    cout << endl;
 
 }
 
