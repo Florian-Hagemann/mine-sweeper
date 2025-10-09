@@ -105,7 +105,7 @@ void Map::mineMap() {
         map.at(coordinates.first).at(coordinates.second).isBomb = true;
 
     }
-
+    
 }
 
 // Empties map and adjust the size
