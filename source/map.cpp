@@ -34,6 +34,8 @@ void Map::display() {
 
             if(map.at(i).at(j).isBomb) {
                 cout << "B";
+            } else if(map.at(i).at(j).isFlaged) {
+                cout << "F";
             } else {
                 cout << map.at(i).at(j).mines;
             }
@@ -116,6 +118,7 @@ void Map::emptyMap() {
     empty.isBomb = false;
     empty.mines = 0;
     empty.revealed = false;
+    empty.isFlaged = false;
 
     vector<Tile> line;
 

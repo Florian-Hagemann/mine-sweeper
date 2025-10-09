@@ -1,5 +1,6 @@
 #include<iostream>
 #include<string>
+#include <ctype.h>
 
 #include "game.h"
 #include "map.h"
@@ -14,6 +15,8 @@ void Game::start() {
     cout << "Starting game!" << endl;
     
     map.generate(16, 9, 10);
+
+    flags = 10;
 
     playing = true;
     update();
@@ -38,9 +41,76 @@ void Game::update() {
             help();
         } else if(input == "menu") {
             start();
+        } else {
+            processInput(input);
         }
 
         cout << endl;
+
+    }
+
+}
+
+void Game::processInput(string input) {
+
+    int x, y;
+    string inputX, inputY;
+
+    int dots = 0; // count when dots are passed to know what to do
+    bool flag = false;
+
+    if(!isdigit(input.at(0))) {
+        
+        cout << "Invalid input! try 'help' for help" << endl;
+    
+    } else {
+
+        for(int i = 0; i < input.length(); i++) {
+
+            if(input.at(i) == '.') {
+                dots++;
+            } else {
+                switch (dots)
+                {
+                case 0:
+                    inputX += input.at(i);
+                    break;
+                case 1:
+                    inputY += input.at(i);
+                    break;
+                case 2:
+                    if(input.at(i) == 'f') {
+                        flag = true;
+                    }
+                    break;
+                default:
+                    break;
+                }
+            }
+        }
+
+        cout << inputX << " " << inputY << endl;
+
+        try {
+
+            x = stoi(inputX);
+            y = stoi(inputY);
+
+            if(flag) {
+
+                if(!map.map.at(y).at(x).isFlaged) {
+                    map.map.at(y).at(x).isFlaged = true;
+                    flags--;
+                } else {
+                    map.map.at(y).at(x).isFlaged = false;
+                    flags++;
+                }
+
+            }
+
+        } catch(int err) {
+            cout << "We dont accept hexadecimal!!! only integers for coordinates obviously!" << endl;
+        }
 
     }
 
@@ -52,7 +122,7 @@ void Game::help() {
     cout << "exit       exit the game" << endl;
     cout << "menu       get back to the menu" << endl;
     cout << "[x].[y]    reveal tile at x,y" << endl;
-    cout << "f.[x].[y]  place a flag at x,y" << endl;
+    cout << "[x].[y].f  place a flag at x,y" << endl;
 
 }
 

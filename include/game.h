@@ -12,6 +12,8 @@ class Game {
         bool playing;
         std::string input;
         Map map;
+        int flags;
+        void processInput(string input);
         void help();
         void menu();
         void setupMatch();
