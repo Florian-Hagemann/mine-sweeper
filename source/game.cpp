@@ -16,12 +16,38 @@ void Game::start() {
     Map map;
 
     map.generate(16, 9, 10);
-    map.display();
+
+    playing = true;
+    update();
 
 }
 
 // update the game
 void Game::update() {
+
+    while(playing) {
+
+        cin >> input;
+        
+        if(input == "exit") {
+            playing = false;
+        } else if(input == "help") {
+            help();
+        } else if(input == "menu") {
+            menu();
+        }
+
+    }
+
+}
+
+// help screen
+void Game::help() {
+
+    cout << "exit       exit the game" << endl;
+    cout << "menu       get back to the menu" << endl;
+    cout << "[x].[y]    reveal tile at x,y" << endl;
+    cout << "f.[x].[y]  place a flag at x,y" << endl;
 
 }
 
