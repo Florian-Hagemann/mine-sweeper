@@ -120,8 +120,6 @@ void Game::processInput(string input) {
             }
         }
 
-        cout << inputX << " " << inputY << endl;
-
         try {
 
             x = stoi(inputX);
