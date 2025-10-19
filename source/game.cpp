@@ -51,6 +51,37 @@ void Game::update() {
 
 }
 
+void Game::reveal(pair<int,int> coordinate) {
+
+    map.map.at(coordinate.second).at(coordinate.first).revealed = true;
+    pair<int,int> neighbor;
+
+    for(int i = -1; i < 2; i++) {
+
+            if(coordinate.second + i >= 0 && coordinate.second + i < map.height) {
+
+                for(int j = -1; j < 2; j++) {
+
+                    if(coordinate.first + j >= 0 && coordinate.first + j < map.width) {
+
+                        if(!map.map.at(coordinate.second + i).at(coordinate.first + j).revealed && !map.map.at(coordinate.second + i).at(coordinate.first + j).isBomb) {
+                            if(map.map.at(coordinate.second + i).at(coordinate.first + j).mines != 0 && map.map.at(coordinate.second).at(coordinate.first).mines != 0) {
+                                return;
+                            }
+                            neighbor = make_pair(coordinate.first + j, coordinate.second + i);
+                            reveal(neighbor);
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+}
+
 void Game::processInput(string input) {
 
     int x, y;
@@ -89,8 +120,6 @@ void Game::processInput(string input) {
             }
         }
 
-        cout << inputX << " " << inputY << endl;
-
         try {
 
             x = stoi(inputX);
@@ -106,6 +135,8 @@ void Game::processInput(string input) {
                     flags++;
                 }
 
+            } else {
+                reveal(make_pair(y,x));
             }
 
         } catch(int err) {

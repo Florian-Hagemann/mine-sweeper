@@ -13,6 +13,7 @@ class Game {
         std::string input;
         Map map;
         int flags;
+        void reveal(pair<int,int> coordinates);
         void processInput(string input);
         void help();
         void menu();
