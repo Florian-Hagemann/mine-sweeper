@@ -136,14 +136,25 @@ void Game::processInput(string input) {
                 }
 
             } else {
-                reveal(make_pair(y,x));
+                if(map.map.at(y).at(x).isBomb) {
+                    loose();
+                } else {
+                    reveal(make_pair(y,x));
+                }
             }
-
         } catch(int err) {
             cout << "We dont accept hexadecimal!!! only integers for coordinates obviously!" << endl;
         }
 
     }
+
+}
+
+void Game::loose() {
+
+    cout << "BOOOOOM! You lost!" << endl << endl;
+
+    menu();
 
 }
 

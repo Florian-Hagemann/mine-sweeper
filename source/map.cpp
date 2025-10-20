@@ -32,10 +32,10 @@ void Map::display() {
 
         for(int j = 0; j < width; j++) {
 
-            if(!map.at(i).at(j).revealed) {
-                cout << "#";
-            } else if(map.at(i).at(j).isFlaged) {
+            if(map.at(i).at(j).isFlaged) {
                 cout << "F";
+            } else if(!map.at(i).at(j).revealed) {
+                cout << "#";
             } else if(map.at(i).at(j).isBomb) {
                 cout << "B";
             } else {
