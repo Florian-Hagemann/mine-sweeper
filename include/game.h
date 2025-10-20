@@ -13,6 +13,9 @@ class Game {
         std::string input;
         Map map;
         int flags;
+        int flagedBombs;
+        int bombs;
+        void win();
         void loose();
         void reveal(pair<int,int> coordinates);
         void processInput(string input);

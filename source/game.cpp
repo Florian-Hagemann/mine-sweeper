@@ -14,9 +14,11 @@ void Game::start() {
 
     cout << "Starting game!" << endl;
     
-    map.generate(16, 9, 10);
+    bombs = 10;
+    map.generate(16, 9, bombs);
 
     flags = 10;
+    flagedBombs = 0;
 
     playing = true;
     update();
@@ -130,6 +132,15 @@ void Game::processInput(string input) {
                 if(!map.map.at(y).at(x).isFlaged) {
                     map.map.at(y).at(x).isFlaged = true;
                     flags--;
+
+                    if(map.map.at(y).at(x).isBomb) {
+                        flagedBombs++;
+                    }
+
+                    if(flagedBombs == bombs) {
+                        win();
+                    }
+
                 } else {
                     map.map.at(y).at(x).isFlaged = false;
                     flags++;
@@ -148,6 +159,11 @@ void Game::processInput(string input) {
 
     }
 
+}
+
+void Game::win() {
+    cout << "You won!!!!!! Yipyyy" << endl << endl;
+    menu();
 }
 
 void Game::loose() {

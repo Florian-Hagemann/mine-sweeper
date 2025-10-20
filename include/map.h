@@ -12,12 +12,11 @@ class Map {
         int height;
         int bombCount;
         vector<vector<Tile>> map;
-
+        vector<pair<int,int>> bombCoordinates;
         void generate(int arg_width, int arg_height, int arg_bombCount);
         void display();
     
     private:
-        vector<pair<int,int>> bombCoordinates;
         void emptyMap();
         void mineMap();
         pair<int, int> generateMineCoordinate();
